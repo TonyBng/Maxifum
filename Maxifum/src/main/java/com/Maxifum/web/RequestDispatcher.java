@@ -56,6 +56,16 @@ public class RequestDispatcher {
 		return "views/user/userLanding";
 	}
 
+	@RequestMapping("userCalendar")
+	private String userCalendar() {
+		return "views/user/userCalendar";
+	}
+
+	@RequestMapping("userServices")
+	private String userServices() {
+		return "views/user/userServices";
+	}
+
 	// @RequestMapping(value = "/login")
 	// public String loginResolv(ModelMap model) {
 	// model.addAttribute("userCredential", new SWL_User());

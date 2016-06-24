@@ -1,10 +1,10 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
 <title>Control de servicio - Maxifum</title>
+
+<!-- *********************************************************************************************** -->
+<!-- ***************************Libraries************************************ -->
 <!-- JQuery -->
 <script src="webjars/jquery/2.2.3/jquery.min.js"></script>
 <script src="webjars/datatables/1.10.11/js/jquery.dataTables.js"
@@ -16,7 +16,6 @@
 <script src="webjars/jquery-blockui/2.65/jquery.blockUI.js"
 	type="text/javascript"></script>
 <!-- Google Charts -->
-<!-- TODO find maven-->
 <script type="text/javascript"
 	src="https://www.gstatic.com/charts/loader.js"></script>
 <!-- file uploader -->
@@ -54,16 +53,29 @@
 	href='https://fonts.googleapis.com/css?family=Merriweather:400,300,300italic,400italic,700,700italic,900,900italic'
 	rel='stylesheet' type='text/css'>
 <!-- Plugin CSS -->
-<link rel="stylesheet" href="resources/css/magnific-popup.css"
-	type="text/css">
+<link rel="stylesheet" href="resources/css/magnific-popup.css" type="text/css">
 <!-- Custom CSS -->
 <link rel="stylesheet" href="resources/css/creative.css" type="text/css">
+
+<!-- *********************************************************************************************** -->
+<!-- *********************************************************************************************** -->
+<script>
+	$(document).ready(function() {
+		$('.headerLink').click(function() {
+			$('#contentDiv').load($(this).attr('href'));
+			return false;
+		});
+	});
+</script>
 </head>
 <body>
 	<!-- NavBar -->
-	<jsp:include page="userNavLinks.jsp" />
-	<div class="container">
-	<jsp:include page="userServices.jsp" />
+	<%-- 	<jsp:include page="userNavLinks.jsp" /> --%>
+	<%@include file="userNavLinks.jsp"%>
+	<!-- 	Content div -->
+	<div class="container" id="contentDiv">
+		<%-- 		<jsp:include page="userServices.jsp" /> --%>
+		<%@include file="userCalendar.jsp"%>
 	</div>
 </body>
 </html>

@@ -1,8 +1,6 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-
-<table id="example" class="display" cellspacing="0" width="100%">
+<!-- JQuery -->
+<script src="webjars/datatables/1.10.11/js/jquery.dataTables.js" type="text/javascript"></script>
+<table id="example" class="display">
 	<thead>
 		<tr>
 			<th>Name</th>
