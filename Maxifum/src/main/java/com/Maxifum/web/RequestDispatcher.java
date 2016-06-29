@@ -53,11 +53,36 @@ public class RequestDispatcher {
 
 	@RequestMapping("loginAction")
 	private String userLogin() {
-		return "views/user/userLanding";
+		return "views/landing";
+	}
+
+	@RequestMapping("landing")
+	private String panelResolv() {
+		return "views/landing";
 	}
 
 	@RequestMapping("userCalendar")
 	private String userCalendar() {
+		return "views/user/userCalendar";
+	}
+
+	@RequestMapping("misServicios")
+	private String misServicios() {
+		return "views/user/userCalendar";
+	}
+
+	@RequestMapping("clientes")
+	private String administrarClientes() {
+		return "views/user/userCalendar";
+	}
+
+	@RequestMapping("misReportes")
+	private String misReportes() {
+		return "views/user/userCalendar";
+	}
+
+	@RequestMapping("reportesGenerales")
+	private String reportesGenerales() {
 		return "views/user/userCalendar";
 	}
 
