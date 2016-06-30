@@ -9,6 +9,10 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
 
+import com.Maxifum.web.elements.EvaluationTask;
+import com.Maxifum.web.elements.PendingTask;
+import com.Maxifum.web.elements.ServiceTask;
+
 @Controller
 // @PropertySource(value = { "classpath:application.properties" })
 public class RequestDispatcher {
@@ -52,14 +56,22 @@ public class RequestDispatcher {
 	}
 
 	@RequestMapping("loginAction")
-	private String userLogin() {
+	private String userLogin(ModelMap model) {
+		PendingTask pendingTask= new PendingTask();
+		pendingTask.getPendingTasks(5);
+		EvaluationTask evaluatedTask = new EvaluationTask();
+		evaluatedTask.getEvaluatedTasks(5);
+		model.addAttribute("pendingTask",pendingTask);
+		model.addAttribute("evaluatedTask",evaluatedTask);
 		return "views/landing";
 	}
 
 	@RequestMapping("landing")
 	private String panelResolv() {
+	
 		return "views/landing";
 	}
+	
 
 	@RequestMapping("userCalendar")
 	private String userCalendar() {

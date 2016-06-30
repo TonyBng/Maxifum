@@ -1,4 +1,4 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -104,29 +104,14 @@
 				</a>
 					<ul class="dropdown-menu dropdown-tasks">
 						<!-- 						Pending Task -->
-						<li><a href="#">
-								<div>
-									<i class="fa fa-calendar-plus-o fa-fw"></i> Nuevo Servicio<span
-										class="pull-right text-muted small">Servicio #4478</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-
-						<!-- 						Pending Task -->
-						<li><a href="#">
-								<div>
-									<i class="fa fa-calendar-plus-o fa-fw"></i> Nuevo Servicio<span
-										class="pull-right text-muted small">Servicio #4479</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<!-- 						Pending Task -->
-						<li><a href="#">
-								<div>
-									<i class="fa fa-calendar-plus-o fa-fw"></i> Nuevo Servicio<span
-										class="pull-right text-muted small">Servicio #4480</span>
-								</div>
-						</a></li>
+						<c:forEach items="${pendingTask.newPendigTasks}" var="task">
+							<li><a href="#">
+									<div>
+										<i class="fa fa-calendar-plus-o fa-fw"></i>${task.serviceTittle }<span
+											class="pull-right text-muted small">${task.serviceSubtittle}</span>
+									</div>
+							</a></li>
+						</c:forEach>
 						<li class="divider"></li>
 						<li><a class="text-center" href="#"> <strong>Ver
 									todos mis Servicios</strong> <i class="fa fa-calendar"></i>
@@ -138,26 +123,15 @@
 						<i class="fa fa-caret-down"></i>
 				</a>
 					<ul class="dropdown-menu dropdown-alerts">
-						<li><a href="#">
-								<div>
-									<i class="fa fa-check-circle-o fa-fw"></i> Nueva Evaluacion <span
-										class="pull-right text-muted small">Servicio #4450</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-check-circle-o fa-fw"></i> Nueva Evaluacion <span
-										class="pull-right text-muted small">Servicio #4449</span>
-								</div>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">
-								<div>
-									<i class="fa fa-check-circle-o fa-fw"></i> Nueva Evaluacion <span
-										class="pull-right text-muted small">Servicio #4448</span>
-								</div>
-						</a></li>
+						<!-- 						Evaluated -->
+						<c:forEach items="${evaluatedTask.newEvaluatedTasks}" var="task">
+							<li><a href="#">
+									<div>
+										<i class="fa fa-check-circle-o fa-fw"></i>${task.serviceTittle }
+										<span class="pull-right text-muted small">${task.serviceSubtittle}</span>
+									</div>
+							</a></li>
+						</c:forEach>
 						<li class="divider"></li>
 						<li><a class="text-center" href="#"> <strong>Ver
 									todas mis Evaluaciones</strong> <i class="fa fa-angle-right"></i>
