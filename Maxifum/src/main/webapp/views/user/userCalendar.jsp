@@ -1,20 +1,20 @@
-
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <div class="panel panel-default">
 	<div class="panel-heading">
 		<i class="fa fa-calendar fa-fw"></i> Calendario de Servicios
 		<div class="pull-right">
 			<div class="btn-group">
-<!-- 				<button type="button" class="btn btn-default btn-xs dropdown-toggle" -->
-<!-- 					data-toggle="dropdown"> -->
-<!-- 					Actions <span class="caret"></span> -->
-<!-- 				</button> -->
-<!-- 				<ul class="dropdown-menu pull-right" role="menu"> -->
-<!-- 					<li><a href="#">Action</a></li> -->
-<!-- 					<li><a href="#">Another action</a></li> -->
-<!-- 					<li><a href="#">Something else here</a></li> -->
-<!-- 					<li class="divider"></li> -->
-<!-- 					<li><a href="#">Separated link</a></li> -->
-<!-- 				</ul> -->
+				<!-- 				<button type="button" class="btn btn-default btn-xs dropdown-toggle" -->
+				<!-- 					data-toggle="dropdown"> -->
+				<!-- 					Actions <span class="caret"></span> -->
+				<!-- 				</button> -->
+				<!-- 				<ul class="dropdown-menu pull-right" role="menu"> -->
+				<!-- 					<li><a href="#">Action</a></li> -->
+				<!-- 					<li><a href="#">Another action</a></li> -->
+				<!-- 					<li><a href="#">Something else here</a></li> -->
+				<!-- 					<li class="divider"></li> -->
+				<!-- 					<li><a href="#">Separated link</a></li> -->
+				<!-- 				</ul> -->
 			</div>
 		</div>
 	</div>
@@ -42,60 +42,60 @@
 					<span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
 				</button>
 			</div>
-
-			<div id="div-forms">
-
-				<form id="login-form" action="closeService">
-					<div class="modal-body">
-						<!-- 						<div id="div-login-msg"> -->
-						<!-- 							<div id="icon-login-msg" class=""></div> -->
-						<!-- 							<label id="text-login-msg" for="login_username">Nombre de -->
-						<!-- 								usuario:</label> <input id="login_username" class="form-control" -->
-						<!-- 								type="text" placeholder="Ingrese su nombre de usuario" required> -->
-						<!-- 						</div> -->
-						<!-- 						<label id="text-login-msg" for="login_password">Contraseña:</label> -->
-						<!-- 						<input id="login_password" class="form-control" type="password" -->
-						<!-- 							placeholder="Ingrese Contraseña" required> -->
-						<!-- 					</div> -->
-						<!-- 					<div class="modal-footer"> -->
-						<!-- 						<div> -->
-						<!-- 							<button type="submit" class="btn btn-primary btn-lg btn-block">Login</button> -->
-						<!-- 						</div> -->
-
-
-
-						<div class="col-md-4 text-center">
-							<h3 class="">Servicio: 0001</h3>
-						</div>
-
-						<label id="txthoraArribo" for="horaArribo">Hora de Arribo:</label>
-						<div class="input-group bootstrap-timepicker timepicker">
-
-							<input id="horaArribo" type="text"
-								class="form-control input-small timePicker"> <span
-								class="input-group-addon"><i
-								class="glyphicon glyphicon-time"></i></span>
-						</div>
-						<label id="text-login-msg" for="horaPartida">Hora de
-							Partida:</label>
-						<div class="input-group bootstrap-timepicker timepicker">
-							<input id="horaPartida" type="text"
-								class="form-control input-small"> <span
-								class="input-group-addon"><i
-								class="glyphicon glyphicon-time"><a></a></i></span>
-						</div>
-						<div class="form-group">
-							<label for="comment">Observaciones:</label>
-							<textarea class="form-control" rows="5" id="comment"></textarea>
-						</div>
-						<div class="col-md-4 text-center">
-							<button type="submit" class="btn btn-success">Completar
-								servicio</button>
-						</div>
-					</div>
-				</form>
-			</div>
 		</div>
+		<div id="div-forms">
+
+			<form id="login-form" action="closeService">
+				<div class="modal-body">
+					<!-- 						<div id="div-login-msg"> -->
+					<!-- 							<div id="icon-login-msg" class=""></div> -->
+					<!-- 							<label id="text-login-msg" for="login_username">Nombre de -->
+					<!-- 								usuario:</label> <input id="login_username" class="form-control" -->
+					<!-- 								type="text" placeholder="Ingrese su nombre de usuario" required> -->
+					<!-- 						</div> -->
+					<!-- 						<label id="text-login-msg" for="login_password">Contraseña:</label> -->
+					<!-- 						<input id="login_password" class="form-control" type="password" -->
+					<!-- 							placeholder="Ingrese Contraseña" required> -->
+					<!-- 					</div> -->
+					<!-- 					<div class="modal-footer"> -->
+					<!-- 						<div> -->
+					<!-- 							<button type="submit" class="btn btn-primary btn-lg btn-block">Login</button> -->
+					<!-- 						</div> -->
+
+
+
+					<div class="col-md-4 text-center">
+						<h3 class="">Servicio: 0001</h3>
+					</div>
+
+					<label id="txthoraArribo" for="horaArribo">Hora de Arribo:</label>
+					<div class="input-group bootstrap-timepicker timepicker">
+
+						<input id="horaArribo" type="text"
+							class="form-control input-small timePicker"> <span
+							class="input-group-addon"><i
+							class="glyphicon glyphicon-time"></i></span>
+					</div>
+					<label id="text-login-msg" for="horaPartida">Hora de
+						Partida:</label>
+					<div class="input-group bootstrap-timepicker timepicker">
+						<input id="horaPartida" type="text"
+							class="form-control input-small"> <span
+							class="input-group-addon"><i
+							class="glyphicon glyphicon-time"><a></a></i></span>
+					</div>
+					<div class="form-group">
+						<label for="comment">Observaciones:</label>
+						<textarea class="form-control" rows="5" id="comment"></textarea>
+					</div>
+					<div class="col-md-4 text-center">
+						<button type="submit" class="btn btn-success">Completar
+							servicio</button>
+					</div>
+				</div>
+			</form>
+		</div>
+
 	</div>
 </div>
 
@@ -104,6 +104,31 @@
 	$(document)
 			.ready(
 					function() {
+						//alert("a")
+						var services = new Array();
+						var dataServices = [];
+
+						<c:forEach items="${serviceList}" var="service">
+						var service = new Object();
+						service.tittle = 'Servicio -${service.serviceId}',
+								service.day = '${service.day}';
+						service.month = '${service.month}';
+						service.year = '${service.year}';
+						services.push(service);
+						</c:forEach>
+
+						for (var i = 0; i < services.length; i++) {
+							var d = services[i].day;
+							var m = services[i].month;
+							var y = services[i].year;
+							dataServices[i] = {
+								title : services[i].tittle,
+								start : new Date(y, m, d),
+								//end : new Date(y, m, d),
+								url : "serviceDetails?userId=" + 5,
+
+							}
+						}
 
 						/*
 						date store today date.
@@ -111,13 +136,11 @@
 						m store current month.
 						y store current year.
 						 */
-						var date = new Date();
-						var d = date.getDate();
-						var m = date.getMonth();
-						var y = date.getFullYear();
-
+						// 						var date = new Date();
+						// 						var d = date.getDate();
+						// 						var m = date.getMonth();
+						// 						var y = date.getFullYear();
 						// page is now ready, initialize the calendar...
-
 						$('#calendar')
 								.fullCalendar(
 										{
@@ -197,11 +220,14 @@
 												events is the main option for calendar.
 												for demo we have added predefined events in json object.
 											 */
-											events : [ {
-												title : '0001 - Cliente',
-												start : new Date(y, m, 1),
-												url : "#collapseExample"
-											} ],
+											events : dataServices
+											// 																									{
+											// 																							title : '0001 - Cliente',
+											// 																							start : new Date(y,	 m, 1),
+											// 																							url : "#collapseExample"
+											// 																						} 
+
+											,
 
 											eventClick : function(event) {
 												if (event.url) {

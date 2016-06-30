@@ -5,13 +5,12 @@ import java.util.List;
 
 import lombok.Getter;
 
-public class PendingTask {
-
+public class GeneralServices {
 	@Getter
-	List<ServiceTask> newPendigTasks;
+	List<ServiceTask> servicesList;
 
-	public PendingTask() {
-		newPendigTasks = new ArrayList<ServiceTask>();
+	public GeneralServices() {
+		servicesList = new ArrayList<ServiceTask>();
 	}
 
 	public void getPendingTasks(int userId) {
@@ -23,15 +22,13 @@ public class PendingTask {
 			a.setServiceId(i);
 			a.setServiceTittle("Nuevo Servicio");
 			a.setServiceSubtittle("Servicio #" + i);
-			a.setDueDateTime(2016, 7, i, 8, 30);
-			addNewPendingTask(a);
+			a.setDueDateTime(2016, 6, i, 8, 30);
+			addNewTask(a);
 		}
 	}
 
-	public void addNewPendingTask(ServiceTask task) {
-		newPendigTasks.add(task);
+	public void addNewTask(ServiceTask task) {
+		servicesList.add(task);
 	}
-
-
 
 }

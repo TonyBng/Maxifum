@@ -6,12 +6,18 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
+import com.Maxifum.web.elements.EvaluatedServices;
 import com.Maxifum.web.elements.EvaluationTask;
+import com.Maxifum.web.elements.GeneralServices;
 import com.Maxifum.web.elements.PendingTask;
 import com.Maxifum.web.elements.ServiceTask;
+import com.Maxifum.web.elements.TodayServices;
 
 @Controller
 // @PropertySource(value = { "classpath:application.properties" })
@@ -57,30 +63,57 @@ public class RequestDispatcher {
 
 	@RequestMapping("loginAction")
 	private String userLogin(ModelMap model) {
-		PendingTask pendingTask= new PendingTask();
+		PendingTask pendingTask = new PendingTask();
 		pendingTask.getPendingTasks(5);
 		EvaluationTask evaluatedTask = new EvaluationTask();
 		evaluatedTask.getEvaluatedTasks(5);
-		model.addAttribute("pendingTask",pendingTask);
-		model.addAttribute("evaluatedTask",evaluatedTask);
+		TodayServices todaysTask = new TodayServices();
+		todaysTask.getTodayServices(5);
+		model.addAttribute("pendingTask", pendingTask);
+		model.addAttribute("numServiciosPendientes", pendingTask.getNewPendigTasks().size());
+		model.addAttribute("evaluatedTask", evaluatedTask);
+		model.addAttribute("numEvaluacionesPendientes", evaluatedTask.getNewEvaluatedTasks().size());
+		model.addAttribute("todayServices", todaysTask);
+		model.addAttribute("numServiciosHoy", todaysTask.getTodayservices().size());
 		return "views/landing";
 	}
 
 	@RequestMapping("landing")
 	private String panelResolv() {
-	
+
 		return "views/landing";
 	}
-	
 
-	@RequestMapping("userCalendar")
-	private String userCalendar() {
-		return "views/user/userCalendar";
+	@RequestMapping("miCalendario")
+	private ModelAndView miCalendario(ModelMap model, @RequestParam(name = "userId") int userId) {
+		GeneralServices gs = new GeneralServices();
+		gs.getPendingTasks(5);
+		model.addAttribute("serviceList", gs.getServicesList());
+		return new ModelAndView("views/user/userCalendar", model);
 	}
 
 	@RequestMapping("misServicios")
-	private String misServicios() {
-		return "views/user/userCalendar";
+	private ModelAndView misServicios(ModelMap model, @RequestParam(name = "userId") int userId) {
+		GeneralServices gs = new GeneralServices();
+		gs.getPendingTasks(5);
+		model.addAttribute("serviceList", gs.getServicesList());
+		return new ModelAndView("views/user/userEvent", model);
+	}
+
+	@RequestMapping("misEvaluaciones")
+	private ModelAndView misEvaluaciones(ModelMap model, @RequestParam(name = "userId") int userId) {
+		EvaluatedServices gs = new EvaluatedServices();
+		gs.getPendingTasks(5);
+		model.addAttribute("serviceList", gs.getServicesList());
+		return new ModelAndView("views/user/userEval", model);
+	}
+
+	@RequestMapping("nuevoServicio")
+	private ModelAndView nuevoServicio(ModelMap model, @RequestParam(name = "userId") int userId) {
+		// EvaluatedServices gs = new EvaluatedServices();
+		// gs.getPendingTasks(5);
+		// model.addAttribute("serviceList", gs.getServicesList());
+		return new ModelAndView("views/admin/newService", model);
 	}
 
 	@RequestMapping("clientes")

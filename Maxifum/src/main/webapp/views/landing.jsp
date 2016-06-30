@@ -41,7 +41,23 @@
 <link href="resources/css/fullcalendar.css" rel="stylesheet">
 <link href="resources/css/fullcalendarCustom.css" rel="stylesheet">
 
+<!-- DataTables -->
+<link href="webjars/datatables/1.10.11/css/jquery.dataTables.min.css"
+	rel="stylesheet" type="text/css">
 
+<!-- Star Ranking -->
+<link href="webjars/bootstrap-star-rating/4.0.1/css/star-rating.css"
+	rel="stylesheet" type="text/css">
+
+<!-- 	Bootstrapt select -->
+<link
+	href="webjars/bootstrap-select/1.10.0/dist/css/bootstrap-select.min.css"
+	rel="stylesheet" type="text/css">
+
+<!-- datePicker -->
+<link
+	href="webjars/bootstrap-datepicker/1.5.0/css/bootstrap-datepicker.min.css"
+	rel="stylesheet" type="text/css">
 
 
 <!-- jQuery -->
@@ -61,12 +77,25 @@
 <!-- Custom Theme JavaScript -->
 <script src="resources/js/sb-admin-2.js"></script>
 
+<!-- DataTables -->
+<script src="webjars/datatables/1.10.11/js/jquery.dataTables.js"
+	type="text/javascript"></script>
+
+<!-- 	datePicker -->
+<script
+	src="webjars/bootstrap-datepicker/1.5.0/js/bootstrap-datepicker.min.js"
+	type="text/javascript"></script>
 
 <!-- 			calendar -->
 <script src="resources/js/moment.js"></script>
 <script src="resources/js/fullcalendar.js"></script>
 <script src="resources/js/lang-all.js"></script>
 <script src="resources/js/bootstrap-timepicker.js"></script>
+<script
+	src="webjars/bootstrap-select/1.10.0/dist/js/bootstrap-select.min.js"></script><!-- StarRanking -->
+<script src="webjars/bootstrap-star-rating/4.0.1/js/star-rating.min.js"
+	type="text/javascript"></script>
+
 
 
 <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
@@ -113,7 +142,7 @@
 							</a></li>
 						</c:forEach>
 						<li class="divider"></li>
-						<li><a class="text-center" href="#"> <strong>Ver
+						<li><a class="text-center misServicios" href="#"> <strong>Ver
 									todos mis Servicios</strong> <i class="fa fa-calendar"></i>
 						</a></li>
 					</ul> <!-- /.dropdown-tasks --></li>
@@ -133,7 +162,7 @@
 							</a></li>
 						</c:forEach>
 						<li class="divider"></li>
-						<li><a class="text-center" href="#"> <strong>Ver
+						<li><a class="text-center misEvaluaciones" href="#"> <strong>Ver
 									todas mis Evaluaciones</strong> <i class="fa fa-angle-right"></i>
 						</a></li>
 					</ul> <!-- /.dropdown-alerts --></li>
@@ -167,9 +196,9 @@
 								<li><a href="misReportes">Mis Reportes</a></li>
 								<li><a href="reportes ">Reportes Generales</a></li>
 							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="misServicios"><i class="fa fa-bug fa-fw"></i>
-								Mis Servicios</a></li>
-						<li><a href="clientes"><i class="fa fa-users fa-fw"></i>
+						<li><a href="#" class="misServicios"><i
+								class="fa fa-bug fa-fw"></i> Mis Servicios</a></li>
+						<li><a href="#"><i class="fa fa-users fa-fw"></i>
 								Clientes</a></li>
 						<li><a href="#"><i class="fa fa-wrench fa-fw"></i>
 								Configuracion<span class="fa arrow"></span></a>
@@ -181,7 +210,7 @@
 						<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>
 								Gestion de Servicios<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="#">Nuevo Servicio</a></li>
+								<li><a href="#" class="nuevoServicio">Nuevo Servicio</a></li>
 								<li><a href="#">Consultar Servicio</a></li>
 							</ul> <!-- /.nav-second-level --></li>
 					</ul>
@@ -208,14 +237,14 @@
 									<i class="fa fa-tasks fa-5x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-									<div class="huge">12</div>
+									<div class="huge">${numServiciosPendientes}</div>
 									<div>Servicios pendientes</div>
 								</div>
 							</div>
 						</div>
 						<a href="#">
-							<div class="panel-footer">
-								<span class="pull-left">Ver detalles</span> <span
+							<div class="panel-footer misServicios">
+								<span class="pull-left ">Ver detalles</span> <span
 									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
 							</div>
@@ -230,14 +259,14 @@
 									<i class="fa fa-thumbs-o-up fa-5x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-									<div class="huge">26</div>
+									<div class="huge">${numEvaluacionesPendientes}</div>
 									<div>Evaluaciones</div>
 								</div>
 							</div>
 						</div>
 						<a href="#">
-							<div class="panel-footer">
-								<span class="pull-left">Ver detalles</span> <span
+							<div class="panel-footer misEvaluaciones">
+								<span class="pull-left ">Ver detalles</span> <span
 									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
 							</div>
@@ -253,13 +282,13 @@
 									<i class="fa fa-calendar fa-5x"></i>
 								</div>
 								<div class="col-xs-9 text-right">
-									<div class="huge">3</div>
+									<div class="huge">${numServiciosHoy}</div>
 									<div>Servicios para Hoy</div>
 								</div>
 							</div>
 						</div>
-						<a href="#">
-							<div class="panel-footer">
+						<a href="# ">
+							<div class="panel-footer miCalendario">
 								<span class="pull-left">Mostrar Calendario</span> <span
 									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
 								<div class="clearfix"></div>
@@ -277,6 +306,76 @@
 				</div>
 			</div>
 			<!-- /#wrapper -->
-</body>
+			<script>
+				$(document).ready(function() {
+					// Load the default page
 
+					$.ajax({
+						url : 'miCalendario',
+						data : ({
+							userId : "5"
+						}),
+						success : function(data) {
+
+							$('#contentDiv').html(data);
+
+						}
+					})
+
+					//Mis servicios
+					$('.misServicios').click(function() {
+
+						$.ajax({
+							url : 'misServicios',
+							data : ({
+								userId : "5"
+							}),
+							success : function(data) {
+
+								$('#contentDiv').html(data);
+							}
+						})
+					});
+
+					//Mis Evaluaciones
+					$('.misEvaluaciones').click(function() {
+						$.ajax({
+							url : 'misEvaluaciones',
+							data : ({
+								userId : "5"
+							}),
+							success : function(data) {
+								$('#contentDiv').html(data);
+							}
+						})
+					});
+
+					// 					Mi Calendario
+					$('.miCalendario').click(function() {
+						$.ajax({
+							url : 'miCalendario',
+							data : ({
+								userId : "5"
+							}),
+							success : function(data) {
+								$('#contentDiv').html(data);
+							}
+						})
+					});
+					//					Mi Calendario
+					$('.nuevoServicio').click(function() {
+						$.ajax({
+							url : 'nuevoServicio',
+							data : ({
+								userId : "5"
+							}),
+							success : function(data) {
+								$('#contentDiv').html(data);
+							}
+						})
+					});
+
+				});
+			</script>
+</body>
 </html>
