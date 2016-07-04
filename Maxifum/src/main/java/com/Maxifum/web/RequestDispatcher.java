@@ -1,6 +1,9 @@
 package com.Maxifum.web;
 
 import java.security.Principal;
+import java.util.List;
+
+import javax.management.MXBean;
 
 import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,111 +11,91 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.Maxifum.service.MaxUserService;
+import com.Maxifum.service.ServiceTaskService;
 import com.Maxifum.web.elements.EvaluatedServices;
 import com.Maxifum.web.elements.EvaluationTask;
 import com.Maxifum.web.elements.GeneralServices;
+import com.Maxifum.web.elements.MaxUser;
 import com.Maxifum.web.elements.PendingTask;
 import com.Maxifum.web.elements.ServiceTask;
 import com.Maxifum.web.elements.TodayServices;
 
 @Controller
-// @PropertySource(value = { "classpath:application.properties" })
 public class RequestDispatcher {
 
-	// @Autowired
-	// public Environment environment;
+	@Autowired
+	private ServiceTaskService serviceDAO;
 
-	// Database Connection
-	//
-	// @Autowired
-	// @Qualifier(value = "SQLServer")
-	// private SessionFactory SQLServer;
-	//
-	// @Autowired
-	// @Qualifier(value = "Postgres")
-	// private SessionFactory PostgresSQL;
-	//
-	// @Autowired
-	// @Qualifier(value = "LocalSQLServer")
-	// private SessionFactory LocalSQLServer;
-
-	// TODO remove this suppresswarning
-	// @SuppressWarnings("unused")
-	// private SessionFactory getApplicationDB() {
-	// switch ("") {
-	// case "dev":
-	// return LocalSQLServer;
-	// case "production":
-	// return SQLServer;
-	// default:
-	// return null;
-	// }
-	// }
-
-	// ************************************************************************************************************
+	@Autowired
+	private MaxUserService userDAO;
 
 	@RequestMapping("/")
-	private String indexResolv(ModelMap model, Principal principal) {
-		model.addAttribute("user_name", principal.getName());
+	private String indexResolv() {
 		return "index";
 	}
 
 	@RequestMapping("loginAction")
-	private String userLogin(ModelMap model) {
-		PendingTask pendingTask = new PendingTask();
-		pendingTask.getPendingTasks(5);
-		EvaluationTask evaluatedTask = new EvaluationTask();
-		evaluatedTask.getEvaluatedTasks(5);
-		TodayServices todaysTask = new TodayServices();
-		todaysTask.getTodayServices(5);
-		model.addAttribute("pendingTask", pendingTask);
-		model.addAttribute("numServiciosPendientes", pendingTask.getNewPendigTasks().size());
-		model.addAttribute("evaluatedTask", evaluatedTask);
-		model.addAttribute("numEvaluacionesPendientes", evaluatedTask.getNewEvaluatedTasks().size());
-		model.addAttribute("todayServices", todaysTask);
-		model.addAttribute("numServiciosHoy", todaysTask.getTodayservices().size());
-		return "views/landing";
+	@ResponseBody
+	private String userLogin(ModelMap model, @RequestParam("userLogin") String login, @RequestParam("userPassword") String password) {
+		// dev***********************
+		System.out.println("us asn pass:" + login+ "-" + password);
+		// End dev*******************
+		
+		return "landing";
 	}
 
 	@RequestMapping("landing")
-	private String panelResolv() {
-
-		return "views/landing";
+	private ModelAndView panelResolv(ModelMap model) {
+		MaxUser user = userDAO.findUserById(0);
+		List<ServiceTask> pendingsServices = serviceDAO.getAllUsersPendingServices(user);
+		List<ServiceTask> newEvaluatedServices = serviceDAO.getUsersNewEvaluations(user);
+		List<ServiceTask> todayServices = serviceDAO.getUsersTodayPendingServices(user);
+		model.addAttribute("pendingServices", pendingsServices);
+		model.addAttribute("pendingServicesSize", pendingsServices.size());
+		model.addAttribute("newEvaluatedServices", newEvaluatedServices);
+		model.addAttribute("newEvaluatedServicesSize", newEvaluatedServices.size());
+		model.addAttribute("todayServices", todayServices);
+		model.addAttribute("todayServicesSize", todayServices.size());
+		return new ModelAndView("views/landing", model);
 	}
 
 	@RequestMapping("miCalendario")
 	private ModelAndView miCalendario(ModelMap model, @RequestParam(name = "userId") int userId) {
-		GeneralServices gs = new GeneralServices();
-		gs.getPendingTasks(5);
-		model.addAttribute("serviceList", gs.getServicesList());
+		// GeneralServices gs = new GeneralServices();
+		// gs.getPendingTasks(5);
+		// model.addAttribute("serviceList", gs.getServicesList());
 		return new ModelAndView("views/user/userCalendar", model);
 	}
 
 	@RequestMapping("misServicios")
 	private ModelAndView misServicios(ModelMap model, @RequestParam(name = "userId") int userId) {
-		GeneralServices gs = new GeneralServices();
-		gs.getPendingTasks(5);
-		model.addAttribute("serviceList", gs.getServicesList());
+		// GeneralServices gs = new GeneralServices();
+		// gs.getPendingTasks(5);
+		// model.addAttribute("serviceList", gs.getServicesList());
 		return new ModelAndView("views/user/userEvent", model);
 	}
 
 	@RequestMapping("misEvaluaciones")
 	private ModelAndView misEvaluaciones(ModelMap model, @RequestParam(name = "userId") int userId) {
-		EvaluatedServices gs = new EvaluatedServices();
-		gs.getPendingTasks(5);
-		model.addAttribute("serviceList", gs.getServicesList());
+		// EvaluatedServices gs = new EvaluatedServices();
+		// gs.getPendingTasks(5);
+		// model.addAttribute("serviceList", gs.getServicesList());
 		return new ModelAndView("views/user/userEval", model);
 	}
 
 	@RequestMapping("nuevoServicio")
 	private ModelAndView nuevoServicio(ModelMap model, @RequestParam(name = "userId") int userId) {
-		// EvaluatedServices gs = new EvaluatedServices();
-		// gs.getPendingTasks(5);
-		// model.addAttribute("serviceList", gs.getServicesList());
+		// ServiceTask service = new
+		// ServiceTask(owner,day,month,year,hour,minute, client,
+		// location,comments);
 		return new ModelAndView("views/admin/newService", model);
 	}
 
@@ -136,6 +119,19 @@ public class RequestDispatcher {
 		return "views/user/userServices";
 	}
 
+	@RequestMapping("gestionUsuarios")
+	private ModelAndView gestionUsuarios(ModelMap model) {
+		model.addAttribute("newUser", new MaxUser());
+		return new ModelAndView("views/admin/newUser", model);
+	}
+
+	@RequestMapping(value = "newUserAction", method = RequestMethod.POST)
+	@ResponseBody
+	private ModelAndView nuevoUsuario(@RequestBody MaxUser user) {
+		userDAO.saveNewUser(user);
+		System.out.println("USER CORRECTLY SAVED! :D");
+		return new ModelAndView("views/user/userCalendar");
+	}
 	// @RequestMapping(value = "/login")
 	// public String loginResolv(ModelMap model) {
 	// model.addAttribute("userCredential", new SWL_User());

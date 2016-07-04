@@ -92,7 +92,8 @@
 <script src="resources/js/lang-all.js"></script>
 <script src="resources/js/bootstrap-timepicker.js"></script>
 <script
-	src="webjars/bootstrap-select/1.10.0/dist/js/bootstrap-select.min.js"></script><!-- StarRanking -->
+	src="webjars/bootstrap-select/1.10.0/dist/js/bootstrap-select.min.js"></script>
+<!-- StarRanking -->
 <script src="webjars/bootstrap-star-rating/4.0.1/js/star-rating.min.js"
 	type="text/javascript"></script>
 
@@ -133,11 +134,12 @@
 				</a>
 					<ul class="dropdown-menu dropdown-tasks">
 						<!-- 						Pending Task -->
-						<c:forEach items="${pendingTask.newPendigTasks}" var="task">
+						<c:forEach items="${pendingServices}" var="service">
 							<li><a href="#">
 									<div>
-										<i class="fa fa-calendar-plus-o fa-fw"></i>${task.serviceTittle }<span
-											class="pull-right text-muted small">${task.serviceSubtittle}</span>
+										<i class="fa fa-calendar-plus-o fa-fw"></i>Servicio
+										#${service.id}<span class="pull-right text-muted small">nuevo
+											servicio</span>
 									</div>
 							</a></li>
 						</c:forEach>
@@ -188,7 +190,7 @@
 				<div class="sidebar-nav navbar-collapse">
 					<ul class="nav" id="side-menu">
 
-						<li><a href="landing"><i class="fa fa-dashboard fa-fw"></i>
+						<li><a href="landing"><i class="fa fa-calendar fa-fw"></i>
 								Inicio</a></li>
 						<li><a href="#"><i class="fa fa-bar-chart-o fa-fw"></i>
 								Reportes<span class="fa arrow"></span></a>
@@ -203,12 +205,13 @@
 						<li><a href="#"><i class="fa fa-wrench fa-fw"></i>
 								Configuracion<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
-								<li><a href="gestionUsuarios">Gestion de Usuarios</a></li>
+								<li><a href="#" class="gestionUsuarios">Gestion de
+										Usuarios</a></li>
 								<li><a href="gestionClientes">Gestion de Clientes</a></li>
 
 							</ul> <!-- /.nav-second-level --></li>
-						<li><a href="#"><i class="fa fa-sitemap fa-fw"></i>
-								Gestion de Servicios<span class="fa arrow"></span></a>
+						<li><a href="#"><i class="fa fa-book fa-fw"></i> Gestion
+								de Servicios<span class="fa arrow"></span></a>
 							<ul class="nav nav-second-level">
 								<li><a href="#" class="nuevoServicio">Nuevo Servicio</a></li>
 								<li><a href="#">Consultar Servicio</a></li>
@@ -227,82 +230,88 @@
 				</div>
 				<!-- /.col-lg-12 -->
 			</div>
-			<!-- /.row -->
-			<div class="row">
-				<div class="col-lg-3 col-md-6">
-					<div class="panel panel-green">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-tasks fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="huge">${numServiciosPendientes}</div>
-									<div>Servicios pendientes</div>
-								</div>
-							</div>
-						</div>
-						<a href="#">
-							<div class="panel-footer misServicios">
-								<span class="pull-left ">Ver detalles</span> <span
-									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-								<div class="clearfix"></div>
-							</div>
-						</a>
-					</div>
-				</div>
-				<div class="col-lg-3 col-md-6">
-					<div class="panel panel-primary">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-thumbs-o-up fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="huge">${numEvaluacionesPendientes}</div>
-									<div>Evaluaciones</div>
-								</div>
-							</div>
-						</div>
-						<a href="#">
-							<div class="panel-footer misEvaluaciones">
-								<span class="pull-left ">Ver detalles</span> <span
-									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-								<div class="clearfix"></div>
-							</div>
-						</a>
-					</div>
-				</div>
 
-				<div class="col-lg-3 col-md-6">
-					<div class="panel panel-yellow">
-						<div class="panel-heading">
-							<div class="row">
-								<div class="col-xs-3">
-									<i class="fa fa-calendar fa-5x"></i>
-								</div>
-								<div class="col-xs-9 text-right">
-									<div class="huge">${numServiciosHoy}</div>
-									<div>Servicios para Hoy</div>
-								</div>
-							</div>
-						</div>
-						<a href="# ">
-							<div class="panel-footer miCalendario">
-								<span class="pull-left">Mostrar Calendario</span> <span
-									class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
-								<div class="clearfix"></div>
-							</div>
-						</a>
-					</div>
-				</div>
-			</div>
 			<!-- /.row -->
 			<div class="row">
 				<div class="col-lg-12">
 					<div id="contentDiv">
-						<jsp:include page="user/userCalendar.jsp" /></div>
-					<!-- /#page-wrapper -->
+						<!-- /.row -->
+						<div class="row">
+							<div class="col-lg-3 col-md-6">
+								<div class="panel panel-green">
+									<div class="panel-heading">
+										<div class="row">
+											<div class="col-xs-3">
+												<i class="fa fa-tasks fa-5x"></i>
+											</div>
+											<div class="col-xs-9 text-right">
+												<div class="huge">${pendingServicesSize}</div>
+												<div>Servicios pendientes</div>
+											</div>
+										</div>
+									</div>
+									<a href="#">
+										<div class="panel-footer misServicios">
+											<span class="pull-left ">Ver detalles</span> <span
+												class="pull-right"><i
+												class="fa fa-arrow-circle-right"></i></span>
+											<div class="clearfix"></div>
+										</div>
+									</a>
+								</div>
+							</div>
+							<div class="col-lg-3 col-md-6">
+								<div class="panel panel-primary">
+									<div class="panel-heading">
+										<div class="row">
+											<div class="col-xs-3">
+												<i class="fa fa-thumbs-o-up fa-5x"></i>
+											</div>
+											<div class="col-xs-9 text-right">
+												<div class="huge">${newEvaluatedServicesSize}</div>
+												<div>Evaluaciones</div>
+											</div>
+										</div>
+									</div>
+									<a href="#">
+										<div class="panel-footer misEvaluaciones">
+											<span class="pull-left ">Ver detalles</span> <span
+												class="pull-right"><i
+												class="fa fa-arrow-circle-right"></i></span>
+											<div class="clearfix"></div>
+										</div>
+									</a>
+								</div>
+							</div>
+
+							<div class="col-lg-3 col-md-6">
+								<div class="panel panel-yellow">
+									<div class="panel-heading">
+										<div class="row">
+											<div class="col-xs-3">
+												<i class="fa fa-calendar fa-5x"></i>
+											</div>
+											<div class="col-xs-9 text-right">
+												<div class="huge">${todayServicesSize}</div>
+												<div>Servicios para Hoy</div>
+											</div>
+										</div>
+									</div>
+									<a href="# ">
+										<div class="panel-footer miCalendario">
+											<span class="pull-left">Mostrar Calendario</span> <span
+												class="pull-right"><i
+												class="fa fa-arrow-circle-right"></i></span>
+											<div class="clearfix"></div>
+										</div>
+									</a>
+								</div>
+							</div>
+						</div>
+						<div id="landingDiv">
+							<jsp:include page="user/userCalendar.jsp" /></div>
+						<!-- /#page-wrapper -->
+					</div>
 				</div>
 			</div>
 			<!-- /#wrapper -->
@@ -317,7 +326,7 @@
 						}),
 						success : function(data) {
 
-							$('#contentDiv').html(data);
+							$('#landingDiv').html(data);
 
 						}
 					})
@@ -362,6 +371,7 @@
 							}
 						})
 					});
+
 					//					Mi Calendario
 					$('.nuevoServicio').click(function() {
 						$.ajax({
@@ -369,6 +379,17 @@
 							data : ({
 								userId : "5"
 							}),
+							success : function(data) {
+								$('#contentDiv').html(data);
+							}
+						})
+					});
+					$('.gestionUsuarios').click(function() {
+						$.ajax({
+							url : 'gestionUsuarios',
+							data : {
+
+							},
 							success : function(data) {
 								$('#contentDiv').html(data);
 							}

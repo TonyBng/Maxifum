@@ -11,9 +11,6 @@
 
 /* .modal-open { */
 /* 	overflow: auto; */
-
-
-
 </style>
 
 
@@ -33,16 +30,16 @@
 
 			<div id="div-forms">
 
-				<form id="login-form" action="loginAction">
+				<form id="login-form" name="login-form">
 					<div class="modal-body">
 						<div id="div-login-msg">
 							<div id="icon-login-msg" class=""></div>
-							<label id="text-login-msg" for="login_username">Nombre de
-								usuario:</label> <input id="login_username" class="form-control"
-								type="text" placeholder="Ingrese su nombre de usuario" required>
+							<label id="text-login-msg" for="userLogin">Nombre de
+								usuario:</label> <input id="userLogin" class="form-control" type="text"
+								placeholder="Ingrese su nombre de usuario" required>
 						</div>
-						<label id="text-login-msg" for="login_password">Contraseña:</label>
-						<input id="login_password" class="form-control" type="password"
+						<label id="text-login-msg" for="userPassword">Contraseña:</label>
+						<input id="userPassword" class="form-control" type="password"
 							placeholder="Ingrese Contraseña" required>
 					</div>
 					<div class="modal-footer">
@@ -55,4 +52,31 @@
 			</div>
 		</div>
 	</div>
+	<script>
+		$(document).ready(function() {
+			$('#login-form').submit(function(event) {
+				event.preventDefault();
+				var data = {}
+				data["userLogin"] = $("#userLogin").val();
+				data["userPassword"] = $("#userPassword").val();
+
+				$.ajax({
+					type : "post",
+					data : data,
+					// 			headers : {
+					// 				'Accept' : 'application/json',
+					// 				'Content-Type' : 'application/json'
+					// 			},
+// 					contentType : "application/json; charset=utf-8",
+					url : "loginAction",
+					success : function(data) {
+						window.location.href= ${home}data;
+					},
+					error : function(xhr, status, error) {
+						console.log(error)
+					}
+				});
+			});
+		});
+	</script>
 </div>
