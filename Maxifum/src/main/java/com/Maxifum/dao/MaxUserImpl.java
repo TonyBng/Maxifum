@@ -5,6 +5,7 @@ import java.util.List;
 import org.hibernate.Criteria;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.criterion.Restrictions;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -47,6 +48,15 @@ public class MaxUserImpl implements MaxUserDAO {
 	public void deleteUser(MaxUser user) {
 		Session session = sessionFactory.getCurrentSession();
 		session.delete(user);
+	}
+
+	@Override
+	public MaxUser findByLogin(String userName, String password) {
+		Session session = sessionFactory.getCurrentSession();
+		Criteria query = session.createCriteria(MaxUser.class);
+		query.add(Restrictions.eq("userLogin", userName));
+		query.add(Restrictions.eq("userPassword", password));
+		return (MaxUser) query.uniqueResult();
 	}
 
 }

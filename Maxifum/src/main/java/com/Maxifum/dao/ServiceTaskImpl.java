@@ -44,7 +44,7 @@ public class ServiceTaskImpl implements ServiceTaskDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria query = session.createCriteria(ServiceTask.class);
 		query.add(Restrictions.eq("serviceOwner", user));
-		query.add(Restrictions.eq("open", true));
+		query.add(Restrictions.eq("isOpen", true));
 		query.addOrder(Order.desc("dueDate"));
 		return query.list();
 	}
@@ -55,7 +55,7 @@ public class ServiceTaskImpl implements ServiceTaskDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria query = session.createCriteria(ServiceTask.class);
 		query.add(Restrictions.eq("serviceOwner", user));
-		query.add(Restrictions.eq("open", false));
+		query.add(Restrictions.eq("isOpen", false));
 		query.addOrder(Order.desc("dueDate"));
 		return query.list();
 	}
@@ -67,7 +67,7 @@ public class ServiceTaskImpl implements ServiceTaskDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria query = session.createCriteria(ServiceTask.class);
 		query.add(Restrictions.eq("serviceOwner", user));
-		query.add(Restrictions.eq("open", false));
+		query.add(Restrictions.eq("isOpen", false));
 		query.add(Restrictions.eq("newTask", true));
 		query.addOrder(Order.desc("dueDate"));
 		return query.list();
@@ -79,7 +79,7 @@ public class ServiceTaskImpl implements ServiceTaskDAO {
 		Session session = sessionFactory.getCurrentSession();
 		Criteria query = session.createCriteria(ServiceTask.class);
 		query.add(Restrictions.eq("serviceOwner", user));
-		query.add(Restrictions.eq("open", false));
+		query.add(Restrictions.eq("isOpen", false));
 		query.add(Restrictions.eq("dueDate", new Date()));
 		query.addOrder(Order.desc("dueDate"));
 		return query.list();

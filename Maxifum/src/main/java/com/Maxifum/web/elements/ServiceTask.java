@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToOne;
+import javax.persistence.Table;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
@@ -17,6 +18,7 @@ import lombok.Setter;
 @Entity
 @AllArgsConstructor
 @NoArgsConstructor
+@Table(name ="ServiceTask", schema="dbo", catalog="db_dev01")
 public class ServiceTask {
 	
 	@Id
@@ -52,7 +54,7 @@ public class ServiceTask {
 
 	@Getter
 	@Setter
-	private boolean open;
+	private boolean isOpen;
 
 	@Getter
 	@Setter

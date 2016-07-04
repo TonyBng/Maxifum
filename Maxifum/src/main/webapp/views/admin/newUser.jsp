@@ -68,19 +68,10 @@
 	$(document).ready(function() {
 		$('#newUserForm').submit(function(event) {
 			event.preventDefault();
-			var str =  JSON.stringify($("#newUserForm"));
-			console.log(str);
+			 var form = $('#newUserForm').serialize();
 			$.ajax({
 				type : "post",
-				data :str,
-				// 			headers : {
-				// 				'Accept' : 'application/json',
-				// 				'Content-Type' : 'application/json'
-				// 			},
-				contentType : "application/json; charset=utf-8",
-				async : false, //Cross-domain requests and dataType: "jsonp" requests do not support synchronous operation
-				cache : false, //This will force requested pages not to be cached by the browser          
-				processData : false, //To avoid making query String instead of JSON
+				data : form,
 				url : "newUserAction",
 				success : function(data) {
 					$('#contentDiv').html(data);

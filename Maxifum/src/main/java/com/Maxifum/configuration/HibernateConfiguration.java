@@ -52,8 +52,8 @@ public class HibernateConfiguration {
 		Properties properties = new Properties();
 		properties.put("hibernate.dialect", environment.getRequiredProperty("jdbc.hibernate.dialect"));
 		properties.put("hibernate.show_sql", environment.getRequiredProperty("jdbc.hibernate.show_sql"));
-		properties.put("hibernate.format_sql", environment.getRequiredProperty("jdbc.hibernate.format_sql"));
-		//properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("jdbc.hibernate.hbm2ddl.auto"));
+		//properties.put("hibernate.format_sql", environment.getRequiredProperty("jdbc.hibernate.format_sql"));
+		properties.put("hibernate.hbm2ddl.auto", environment.getRequiredProperty("jdbc.hibernate.hbm2ddl.auto"));
 		//properties.put("hibernate.globally_quoted_identifiers",environment.getRequiredProperty("jdbc.hibernate.globally_quoted_identifiers"));
 		return properties;
 	}

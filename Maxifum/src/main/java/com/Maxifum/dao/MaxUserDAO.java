@@ -20,4 +20,6 @@ public interface MaxUserDAO {
 
 	// Deleters
 	void deleteUser(MaxUser servce);
+
+	MaxUser findByLogin(String userName, String password);
 }

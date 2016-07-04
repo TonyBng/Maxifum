@@ -11,6 +11,8 @@ public interface MaxUserService {
 	// Finders
 	MaxUser findUserById(int id);
 
+	MaxUser findByLogin(String userName, String password);
+
 	List<MaxUser> getAllUsersUsers();
 
 	// updaters

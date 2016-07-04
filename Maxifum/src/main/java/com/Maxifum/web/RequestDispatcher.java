@@ -11,6 +11,7 @@ import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -44,12 +45,13 @@ public class RequestDispatcher {
 
 	@RequestMapping("loginAction")
 	@ResponseBody
-	private String userLogin(ModelMap model, @RequestParam("userLogin") String login, @RequestParam("userPassword") String password) {
-		// dev***********************
-		System.out.println("us asn pass:" + login+ "-" + password);
-		// End dev*******************
-		
-		return "landing";
+	private String userLogin(ModelMap model, @RequestParam("userLogin") String login,
+			@RequestParam("userPassword") String password) {
+		MaxUser user = userDAO.findByLogin(login, password);
+		if (user != null)
+			return "landing";
+
+		return "views/index";
 	}
 
 	@RequestMapping("landing")
@@ -121,13 +123,20 @@ public class RequestDispatcher {
 
 	@RequestMapping("gestionUsuarios")
 	private ModelAndView gestionUsuarios(ModelMap model) {
+		model.addAttribute("userList", userDAO.getAllUsersUsers());
+		return new ModelAndView("views/admin/userAdmin", model);
+	}
+
+	
+	@RequestMapping("nuevoUsuario")
+	private ModelAndView nuevoUsuario(ModelMap model) {
 		model.addAttribute("newUser", new MaxUser());
 		return new ModelAndView("views/admin/newUser", model);
 	}
 
 	@RequestMapping(value = "newUserAction", method = RequestMethod.POST)
 	@ResponseBody
-	private ModelAndView nuevoUsuario(@RequestBody MaxUser user) {
+	private ModelAndView nuevoUsuario(@ModelAttribute MaxUser user) {
 		userDAO.saveNewUser(user);
 		System.out.println("USER CORRECTLY SAVED! :D");
 		return new ModelAndView("views/user/userCalendar");

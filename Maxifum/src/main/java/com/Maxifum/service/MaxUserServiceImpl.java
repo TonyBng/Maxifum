@@ -47,4 +47,10 @@ public class MaxUserServiceImpl implements MaxUserService {
 		userDAO.deleteUser(user);
 	}
 
+	@Override
+	@Transactional
+	public MaxUser findByLogin(String userName, String password) {
+		return userDAO.findByLogin(userName, password);
+	}
+
 }
